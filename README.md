@@ -1,8 +1,8 @@
 # crocReceive
-Minmal GUI for croc file transfer. Easy File Sharing for Discord
-Please remeber. This is just a simple AutoIt Script to make life easier. It probably has a lot of bugs at the moment.
-Code Optimizing is still pending. Testing is still pending. Feel free to use or do whatever you want with it.
-And yes. There are better solutions than AutoIt, but it is working ¯\_(ツ)_/¯ Used ISN AutoIT Studio
+Minmal GUI for croc file transfer. Easy File Sharing for Discord. 
+Please remember. This is just a simple AutoIt Script to make life easier. It probably has a lot of bugs at the moment.
+Code Optimizing is still pending. Testing is still pending. Feel free to use or do whatever you want with it, or use a better programming language for the idea ^^.
+There are better solutions than AutoIt, but it is working ¯\_(ツ)_/¯ Used ISN AutoIT Studio
 
 **Installation:**
 - Extract Croc into a folder of your choice -> https://github.com/schollz/croc/releases
