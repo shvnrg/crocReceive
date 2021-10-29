@@ -4,6 +4,8 @@ Please remember. This is just a simple AutoIt Script to make life easier. It pro
 Code Optimizing is still pending. Testing is still pending. Feel free to use or do whatever you want with it, or use a better programming language for the idea ^^.
 There are better solutions than AutoIt, but it is working ¯\_(ツ)_/¯ Used ISN AutoIT Studio
 
+***Manual***
+
 **Installation:**
 - Extract Croc into a folder of your choice -> https://github.com/schollz/croc/releases
 - Extract CrocReceiver.exe into the folder where you extracted croc.exe 
@@ -26,3 +28,11 @@ There are better solutions than AutoIt, but it is working ¯\_(ツ)_/¯ Used ISN
 - Croc Transfer Window will open and Transfer Code will be put in Clipboard. With large files there can be flickering till the code is succesfully extracted 
 - Paste Clipboard into Discord, will transform into a clickable link.
 - Keep Croc Window open till partner accepts and transfers are finished.
+
+***Other Stuff***
+
+**Todo:**
+- Testing
+- Optimizing
+- Comments in Code
+- etc.
