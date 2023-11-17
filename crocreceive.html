@@ -1,0 +1,15 @@
+
+<html>
+	<head>
+		<title>CrocReceive Helper</title>
+
+	</head>
+	<body>
+  <script>
+var extraPathInfo = window.location.href.split("?")[1];
+window.location = "croc://" + extraPathInfo; 
+var x = '<meta http-equiv="refresh" content="0;url=' + window.location + '">';
+document.write (x);
+  </script>
+	</body>
+</html>
