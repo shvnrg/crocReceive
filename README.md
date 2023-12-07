@@ -1,3 +1,7 @@
+NO LONGER  WORKING LIKE INTENDED
+DISCORD REMOVED SUPPORT FOR CUSTOM URL HANDLES
+
+
 # crocReceive
 Minmal GUI for croc file transfer. Easy File Sharing for Discord. 
 Please remember. This is just a simple AutoIt Script to make life easier. It probably has a lot of bugs at the moment.
