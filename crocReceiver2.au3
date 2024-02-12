@@ -1,4 +1,5 @@
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_Icon=Images\CrocReceiveGui.ico
 #AutoIt3Wrapper_Outfile=CrocReceiverGui.Exe
 #AutoIt3Wrapper_Outfile_x64=CrocReceiverGui.Exe
 #AutoIt3Wrapper_UseX64=y
@@ -25,7 +26,7 @@ if  $processpid <> @AutoItPID  Then
 	
 	if $CmdLine[0] <> "0" Then
 		if StringInStr( $CmdLine[1], "croc://" ) = 1 Then 
-			Exit 
+			 
 		Else
 			msgbox(0, "FetchMeIAmAFile! " & Random(1 , 999999999999999999999), $CmdLine[1], 15)
 			Exit 
@@ -35,7 +36,7 @@ if  $processpid <> @AutoItPID  Then
 EndIf
 
 
-FileDelete("output.tmp.del")
+FileDelete( @ScriptDir & "\output.tmp.del")
 
 if FileExists( @ScriptDir & "\croc.exe") = 0 Then 
 	msgbox(0, "Croc missing",  "Please put file into folder with croc.exe. Program will not work without CROC in the Script Folder") 
@@ -72,6 +73,10 @@ if $CmdLine[0] <> "0" Then
 EndIf 
 
 Call ("RegCheck")
+
+if IniRead ( "config.ini", "path", "save", "0" ) <>  "0" Then 
+	GuiCtrlSetData($gui_savelocation, IniRead ( "config.ini", "path", "save", "0" ) )
+EndIf
 
 GUISetState()
 
@@ -186,9 +191,26 @@ Func Send_Files()
 		$file_string = StringReplace($file_string, @CRLF, '')
 		$file_string = "--debug send" & $file_string
 		
-		
 		Run(@ComSpec & ' /k ""' & @ScriptDir & '\croc.exe" ' & $file_string & ' > output.tmp.del"', @ScriptDir)
-		ClipPut(@ComSpec & ' /k ""' & @ScriptDir & '\croc.exe" ' & $file_string & ' > output.tmp.del"')
+		
+		
+		$search =  1
+		while $search =  1
+			$debug_file =  FileRead ( @ScriptDir & "\output.tmp.del" )
+			if StringInStr($debug_file, "Debug:true", 1) Then
+				$search = 0
+				$debug_file =  StringTrimLeft($debug_file, StringInStr($debug_file, "SharedSecret:", 1) + 12)
+				$debug_file =  StringTrimRight($debug_file, StringLen($debug_file) - StringInStr($debug_file, "Debug:true", 1) + 2 )
+				$code_url =  "https://shvnrg.github.io/crocdirect.html?" & $debug_file
+				ClipPut($code_url)
+				msgbox(0, "Code extracted",  "Code was copied to Clipboard. Program closing. Have fun :)")
+				Exit 
+				
+			EndIf
+
+		Wend
+		
+
 
 	EndIf
 	
@@ -203,15 +225,20 @@ Func receive_files()
 	 if GuiCtrlRead($gui_savelocation) = "" Or  GUICtrlRead($gui_code) = "" Then 
 		msgbox (0, "Error",  'Please enter values for "Code" and "Save to"')
 	 Else
-		ShellExecute(@scriptDir & '\croc.exe', StringTrimLeft($CmdLine[1], 7), GuiCtrlRead($gui_savelocation) )
+		ShellExecute(@scriptDir & '\croc.exe', GUICtrlRead($gui_code), GuiCtrlRead($gui_savelocation) )
 		Exit
 		 
 	 EndIf
 EndFunc
 
 Func set_save_path()
-	$save_path =  FileSelectFolder ( "Choose Folder to Save Files", "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}")
+	$default_path =  IniRead ( "config.ini", "path", "save", "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}" )
+	$save_path =  FileSelectFolder ( "Choose Folder to Save Files", $default_path)
+	if $save_path = "" Then
+		$save_path = $default_path
+	EndIf
 	GuiCtrlSetData($gui_savelocation, $save_path)
+	IniWrite ( "config.ini", "path", "save", $save_path )
 EndFunc
 
 Func WM_DROPFILES($hWnd, $iMsg, $wParam, $lParam)

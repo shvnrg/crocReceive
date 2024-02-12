@@ -1,4 +1,7 @@
 !!! NO LONGER  WORKING LIKE INTENDED !!! DISCORD REMOVED SUPPORT FOR CUSTOM URL HANDLES !!!
+WILL BE UPDATED SOON
+
+
 
 # crocReceive
 Minmal GUI for croc file transfer. Easy File Sharing for Discord. 
