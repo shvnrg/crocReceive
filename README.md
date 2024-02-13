@@ -1,5 +1,6 @@
 # crocReceive 
-Minmal GUI for croc file transfer. Easy File Sharing for Discord. 
+Minmal GUI for croc file transfer. I searched an easier way for large File Sharing in Discord. 
+After not finding anything CrocReceiverGui is the result ^^
 Please remember. This is just a simple AutoIt Script to make life easier. It probably has some (?) bugs at the moment.
 Code Optimizing is still pending. Testing is partitially done and i am already using it without problems. 
 Feel free to use or do whatever you want with it, or use a better programming language for the idea ^^.
