@@ -11,7 +11,7 @@ There are better solutions than AutoIt, but it is working ¯\_(ツ)_/¯ Used ISN
 - Extract Croc into a folder of your choice -> https://github.com/schollz/croc/releases
 - Extract CrocReceiverGui.exe into the folder where you extracted croc.exe 
 - Run CrocReceiverGUI.exe and choose "Install / Uninstall" to register handles and right click menus for files and folders. It will ask Admin rights to do this!
-  IF YOU ALREAD HAD THE OLDER VERSION INSTALLED THEN REINSTALL THE HANDLES AND REINSTALL THEM!
+  IF YOU ALREAD HAD THE OLDER VERSION INSTALLED THEN DEINSTALL THE HANDLES AND REINSTALL THEM!
 - You are ready to go
 
 **Deinstallation:**
