@@ -5,7 +5,9 @@ Code Optimizing is still pending. Testing is partitially done and i am already u
 Feel free to use or do whatever you want with it, or use a better programming language for the idea ^^.
 There are better solutions than AutoIt, but it is working ¯\_(ツ)_/¯ Used ISN AutoIT Studio
 
-***Manual***
+![image](https://github.com/shvnrg/crocReceive/assets/93375929/2e898e05-453c-4328-b8a7-bbd7b7d7a053)
+
+***How To***
 
 **Installation:**
 - Extract Croc into a folder of your choice -> https://github.com/schollz/croc/releases
