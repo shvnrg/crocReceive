@@ -75,7 +75,7 @@ gui_event_resized=
 gui_event_dropped=
 defaultfont=MS Sans Serif
 defaultfontsize=8
-[0x000E119C]
+[0x002327AA]
 type=input
 handle=445
 locked=0
@@ -104,7 +104,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00081196]
+[0x0016295C]
 type=label
 handle=446
 locked=0
@@ -133,7 +133,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00071194]
+[0x0025294C]
 type=input
 handle=447
 locked=0
@@ -162,7 +162,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00071192]
+[0x001E0C40]
 type=label
 handle=448
 locked=0
@@ -191,7 +191,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00081198]
+[0x001229D4]
 type=button
 handle=449
 locked=0
@@ -220,7 +220,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x0007118E]
+[0x00120C66]
 type=button
 handle=450
 locked=0
@@ -249,7 +249,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00071190]
+[0x00170C58]
 type=button
 handle=451
 locked=0
@@ -278,7 +278,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00071188]
+[0x00092E12]
 type=group
 handle=452
 locked=0
@@ -307,7 +307,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x0007118A]
+[0x00112920]
 type=group
 handle=453
 locked=0
@@ -336,7 +336,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00071184]
+[0x000A2C64]
 type=button
 handle=454
 locked=0
@@ -365,7 +365,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00071186]
+[0x001B0454]
 type=group
 handle=455
 locked=0
@@ -394,7 +394,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00071180]
+[0x00092838]
 type=label
 handle=456
 locked=0
@@ -423,7 +423,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x0007119E]
+[0x000828B6]
 type=listview
 handle=457
 locked=0
@@ -452,7 +452,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x000811A4]
+[0x000D2E2E]
 type=label
 handle=458
 locked=0
@@ -481,7 +481,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x000E0F3C]
+[0x004322CE]
 type=button
 handle=459
 locked=0

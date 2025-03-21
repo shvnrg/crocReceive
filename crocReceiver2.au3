@@ -5,7 +5,7 @@
 #AutoIt3Wrapper_UseX64=y
 #AutoIt3Wrapper_Res_Comment=GUI written in AutoIt for easier usage of Croc from Schollz. Allows easier sharing between friends by using URI Registration and creating Links, that are usabel in Discord via a redirecting Webpage.
 #AutoIt3Wrapper_Res_Description=Simple GUI for easier Croc Usage
-#AutoIt3Wrapper_Res_Fileversion=0.8.5.3
+#AutoIt3Wrapper_Res_Fileversion=0.8.5.52
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=p
 #AutoIt3Wrapper_Res_ProductVersion=2
 #AutoIt3Wrapper_Res_CompanyName=noorg
@@ -22,30 +22,40 @@
 ;AutoIt3Wrapper directive for exe files, DllCall for au3/a3x files
 If not @Compiled then DllCall("User32.dll", "bool", "SetProcessDPIAware")
 
+#NoTrayIcon
+
 ;Includes
 #include <GUIConstants.au3>
 #include <GUIListView.au3>
 #include <WinAPIEx.au3>
 #include <WindowsConstants.au3>
+#include <File.au3>
 
 
-;When already one Process of CrocReceiverGui.exe is running only bring a msgbox with the selected filename and "random" title
-;Filename will automatically be read by the existing CrocReceiverGui.exe, added to the file list and then closed
+;When already one Process of CrocReceiverGui.exe is running the file will be saveed in a temp directory which will be processed during
+;runtime. In the temp files the information about the target files are saved. Sadly there is one file for every file which will be send.
+;After processing the temp files will be deleted. But still multiple read and writes on the harddisk :(
+;Filename will automatically be read through the temp files by the existing (main) CrocReceiverGui.exe, added to the file list and then deleted.
+
+;Even when low chance making sure that there are no duplicate files with Random and Checks for existing files
+
+DirCreate ( @ScriptDir & "\tmpfiles\" )
 
 $processpid = ProcessExists("CrocReceiverGui.exe")
 if $processpid <> @AutoItPID Then
-
 	if $CmdLine[0] <> "0" Then
-		if StringInStr($CmdLine[1], "croc://") <> 1 Then
-			msgbox(0, "FetchMeIAmAFile! " & Random(1, 999999999999999999999), $CmdLine[1], 15)
-			Exit
-		EndIf
+			if StringInStr($CmdLine[1], "croc://") <> 1 Then
+				while 1
+					$rand = Random(1,  999999999999)
+					If FileExists( @ScriptDir & "\tmpfiles\" & $rand ) <> 1  Then
+						FileWriteLine ( @ScriptDir & "\tmpfiles\" & $rand , $CmdLine[1] )
+						Exit 
+					EndIf
+				WEnd 
+			EndIf
 	EndIf
 
 EndIf
-
-;Delete Old Output File, happens a lot to be sure
-FileDelete(@ScriptDir & "\output.tmp.del")
 
 ;Check if croc.exe is available
 if FileExists(@ScriptDir & "\croc.exe") = 0 Then
@@ -54,6 +64,7 @@ if FileExists(@ScriptDir & "\croc.exe") = 0 Then
 EndIf
 
 ;Include the GUI File
+#include "crocLink.isf"
 #include "crocGui.isf"
 
 ;Register Drag & Drop
@@ -82,7 +93,7 @@ EndIf
 ;Check Registry if registered and set text accordingly
 Call("RegCheck")
 
-;Reas Ini File to set las used download path
+;Read Ini File to set last used download path
 if IniRead(@ScriptDir & "\config.ini", "path", "save", "0") <> "0" Then
 	GuiCtrlSetData($gui_savelocation, IniRead(@ScriptDir & "\config.ini", "path", "save", "0"))
 EndIf
@@ -111,10 +122,14 @@ While 1
 		Case $gui_uninstall
 			Call("RegCheckDo")
 	EndSwitch
-	if WinExists("FetchMeIAmAFile!") Then
-		$window = WinGetTitle("FetchMeIAmAFile!")
-		_GUICtrlListView_AddItem($gui_files, StringTrimRight(StringTrimLeft(WinGetText($window), 3), 1))
-		WinClose($window)
+
+; Process temp files while runtime and add to ListView, runs till programm is terminated
+	$firstFile = FileFindFirstFile ( @ScriptDir & "\tmpfiles\*" )
+	if $firstFile <> -1 Then
+	   $nextFile = FileFindNextFile( $firstFile )
+	   $filetoadd = FileReadLine( @ScriptDir & "\tmpfiles\" & $nextFile, 1 )
+	   _GUICtrlListView_AddItem($gui_files, $filetoadd)
+	   FileDelete ( @ScriptDir & "\tmpfiles\" & $nextFile )
 	EndIf
 WEnd
 
@@ -165,8 +180,10 @@ Func RegInstall()
 	RegWrite("HKEY_CLASSES_ROOT\croc", "URL Protocol", "REG_SZ", "")
 	RegWrite("HKEY_CLASSES_ROOT\*\shell\croc\command", "", "REG_SZ", '"' & @ScriptDir & '\CrocReceiverGUI.exe" "%1"')
 	RegWrite("HKEY_CLASSES_ROOT\*\shell\croc", "", "REG_SZ", "Send it with Croc")
+	RegWrite("HKEY_CLASSES_ROOT\*\shell\croc", "MultiSelectModel", "REG_SZ", "Player")
 	RegWrite("HKEY_CLASSES_ROOT\Directory\shell\croc\command", "", "REG_SZ", '"' & @ScriptDir & '\CrocReceiverGUI.exe" "%1"')
 	RegWrite("HKEY_CLASSES_ROOT\Directory\shell\croc", "", "REG_SZ", "Send it with Croc")
+	RegWrite("HKEY_CLASSES_ROOT\Directory\shell\croc", "MultiSelectModel", "REG_SZ", "Player")
 	msgbox(0, "CrocReceiver", "CrocReceiver is now installed")
 EndFunc   ;==>RegInstall
 
@@ -186,24 +203,44 @@ Func Send_Files()
 		;Prepare string by removing Linebreaks and add croc parameters 
 		;debug will be used to create output file and get the SharedSecret from the file
 		$file_string = StringReplace($file_string, @CRLF, '')
-		$file_string = "--debug send" & $file_string
-		Run(@ComSpec & ' /k ""' & @ScriptDir & '\croc.exe" ' & $file_string & ' > output.tmp.del"', @ScriptDir)
-		;Search the Output for the SharedSecret and Trim the string accordingly
-		$search = 1
-		while $search = 1
-			$debug_file = FileRead(@ScriptDir & "\output.tmp.del")
-			if StringInStr($debug_file, "Debug:true", 1) Then
-				$search = 0
-				$debug_file = StringTrimLeft($debug_file, StringInStr($debug_file, "SharedSecret:", 1) + 12)
-				$debug_file = StringTrimRight($debug_file, StringLen($debug_file) - StringInStr($debug_file, "Debug:true", 1) + 2)
-				;Create a URL from the Code which uses the Redirect Page and copy it to clipboard
-				;The Redirect Page is needed because Discord removed the Ability to click on custom URI Handlers
-				$code_url = "https://shvnrg.github.io/crocdirect.html?" & $debug_file
-				ClipPut($code_url)
-				msgbox(0, "Code extracted", "Code was copied to Clipboard. Program closing. Have fun :)")
-				Exit
-
+		$file_string = "send" & $file_string
+		$clipTempOld = ClipGet()
+		ClipPut("")
+		GuiSetState(@SW_HIDE, $crocGui)
+		ShellExecute(@ScriptDir & "\croc.exe", $file_string, @ScriptDir )
+		;Wait for Clipboard Input -> Password is set to clipboard from Croc autoamtically
+		;Multiple Checks to make sure that the Clipboard Change is not done accidentally by a user copy pasting
+		;Checking old Clipboard and compare to new Clipboard
+		;Checking first 4 Characters if Numerical
+		;Checkign if the fifth charcter is "-"
+		While 1
+			sleep(500)
+			$ClipTest =  ClipGet()
+			;When Clipboard is changed and Checks are correct open Gui for Selection (Copy only Code or with URL)
+			if $ClipTest <>  $clipTempOld And  StringInStr($ClipTest, "-") = 5 And StringIsDigit ( StringMid($clipTest, 1, 4) ) = 1 Then 
+				$code_code = ClipGet()
+				$code_url = "https://shvnrg.github.io/crocdirect.html?" & ClipGet()
+				GUISetState(@SW_SHOW, $crocLink)
+				WinActivate( "crocLink")
+				GuiCtrlSetData($code_croccode, $code_code)
+				GuiCtrlSetData($code_crocurl, $code_url)
+				;Loop and wait for Cases
+				While 1
+					$nMsg = GUIGetMsg()
+					Switch $nMsg
+						Case $GUI_EVENT_CLOSE
+							Exit
+						Case $copy_code
+							ClipPut($code_croccode)
+							Exit 
+						Case $copy_url
+							ClipPut($code_url)
+							Exit 
+					EndSwitch
+				WEnd
 			EndIf
+			
+			
 		Wend
 	EndIf
 EndFunc   ;==>Send_Files

@@ -1,0 +1,202 @@
+; -- Created with ISN Form Studio 2 for ISN AutoIt Studio -- ;
+#include <StaticConstants.au3>
+#include <GUIConstantsEx.au3>
+#include <WindowsConstants.au3>
+#Include <GuiButton.au3>
+#include <EditConstants.au3>
+
+$crocLink = GUICreate("crocLink",606,128,-1,-1,-1,-1)
+GUICtrlCreateGroup("Croc Code and URL",10,10,583,105,-1,-1)
+$code_croccode = GUICtrlCreateInput("",20,37,381,20,BitOr($ES_CENTER,$ES_READONLY),$WS_EX_CLIENTEDGE)
+$code_crocurl = GUICtrlCreateInput("",20,70,381,20,BitOr($ES_CENTER,$ES_READONLY),$WS_EX_CLIENTEDGE)
+$copy_code = GUICtrlCreateButton("Copy to Clipboard and Exit",408,37,177,20,-1,-1)
+$copy_url = GUICtrlCreateButton("Copy to Clipboard and Exit",408,76,177,20,-1,-1)
+
+
+
+#cs
+[gui]
+Handle_deklaration=default
+Handle_deklaration_const=default
+title=crocLink
+breite=606
+hoehe=128
+style=-1
+exstyle=-1
+bgcolour=0xF0F0F0
+bgimage=none
+handle=crocLink
+parent=
+code=
+codebeforegui=
+xpos=-1
+ypos=-1
+center_gui=true
+title_textmode=normal
+isf_include_once=false
+isf_no_includes=false
+only_controls_in_isf=false
+const_modus=default
+gui_code_in_function=false
+gui_code_in_function_name=
+gui_code_in_function_mode=gui
+gui_code_in_function_map_name=
+gui_event_close=
+gui_event_minimize=
+gui_event_restore=
+gui_event_maximize=
+gui_event_mousemove=
+gui_event_primarydown=
+gui_event_primaryup=
+gui_event_secoundarydown=
+gui_event_secoundaryup=
+gui_event_resized=
+gui_event_dropped=
+defaultfont=MS Sans Serif
+defaultfontsize=8
+[0x007A22FA]
+type=group
+handle=445
+locked=0
+resize=
+x=10
+y=10
+width=583
+height=105
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0x000000
+id=
+text=Croc Code and URL
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=
+code=
+order=0
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+[0x00152E6A]
+type=input
+handle=446
+locked=0
+resize=
+x=20
+y=37
+width=381
+height=20
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0x000000
+id=$code_croccode
+text=
+state=$GUI_SHOW+$GUI_ENABLE
+style=$ES_CENTER+$ES_READONLY
+exstyle=$WS_EX_CLIENTEDGE
+bgcolour=
+code=
+order=2
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+[0x00162E1E]
+type=input
+handle=447
+locked=0
+resize=
+x=20
+y=70
+width=381
+height=20
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0x000000
+id=$code_crocurl
+text=
+state=$GUI_SHOW+$GUI_ENABLE
+style=$ES_CENTER+$ES_READONLY
+exstyle=$WS_EX_CLIENTEDGE
+bgcolour=
+code=
+order=3
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+[0x006024E8]
+type=button
+handle=448
+locked=0
+resize=
+x=408
+y=37
+width=177
+height=20
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0x000000
+id=$copy_code
+text=Copy to Clipboard and Exit
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=
+code=
+order=4
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+[0x000F2E72]
+type=button
+handle=449
+locked=0
+resize=
+x=408
+y=76
+width=177
+height=20
+func=
+font=MS Sans Serif
+fontsize=8
+fontstyle=400
+fontattribute=0
+tooltip=
+bgimage=
+textcolour=0x000000
+id=$copy_url
+text=Copy to Clipboard and Exit
+state=$GUI_SHOW+$GUI_ENABLE
+style=
+exstyle=
+bgcolour=
+code=
+order=5
+tabpage=-1
+iconindex=
+iconlarge=0
+textmode=text
+#ce
