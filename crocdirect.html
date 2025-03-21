@@ -1,12 +1,15 @@
-
+<!DOCTYPE html>
 <html>
+<head>
+  <title>Croc Forwarder</title>
+	<script>
+		var extraPathInfo = window.location.href.split("?")[1];
+		var redirectUri = "croc://" + extraPathInfo; 
+		console.log("Redirecting to " + redirectUri)
+		window.location.href = redirectUri
+	</script>
+</head>
 <body>
-Croc Forwarder	
-<script>
-var extraPathInfo = window.location.href.split("?")[1];
-window.location = "croc://" + extraPathInfo; 
-var x = '<meta http-equiv="refresh" content="0;url=' + window.location + '">';
-document.write (x);
-</script>
+  This link has been opened with CrocReceive.
 </body>
 </html>
