@@ -5,7 +5,7 @@
 #AutoIt3Wrapper_UseX64=y
 #AutoIt3Wrapper_Res_Comment=GUI written in AutoIt for easier usage of Croc from Schollz. Allows easier sharing between friends by using URI Registration and creating Links, that are usabel in Discord via a redirecting Webpage.
 #AutoIt3Wrapper_Res_Description=Simple GUI for easier Croc Usage
-#AutoIt3Wrapper_Res_Fileversion=0.9.0.3
+#AutoIt3Wrapper_Res_Fileversion=0.9.0.7
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=p
 #AutoIt3Wrapper_Res_ProductVersion=2
 #AutoIt3Wrapper_Res_CompanyName=noorg
@@ -30,6 +30,7 @@ If not @Compiled then DllCall("User32.dll", "bool", "SetProcessDPIAware")
 #include <WinAPIEx.au3>
 #include <WindowsConstants.au3>
 #include <File.au3>
+#include <Constants.au3>
 #include <mnemonic.au3>
 
 ;When already one Process of CrocReceiverGui.exe is running the file will be saveed in a temp directory which will be processed during
@@ -89,6 +90,9 @@ if $CmdLine[0] <> "0" Then
 		_GUICtrlListView_AddItem($gui_files, $CmdLine[1])
 	EndIf
 EndIf
+
+$versionTested = "10.2.1"
+VersionCheck() 
 
 ;Check Registry if registered and set text accordingly
 Call("RegCheck")
@@ -277,6 +281,29 @@ Func WM_DROPFILES($hWnd, $iMsg, $wParam, $lParam)
 	EndSwitch
 	Return $GUI_RUNDEFMSG
 EndFunc   ;==>WM_DROPFILES
+
+Func VersionCheck()
+	$crocStream = Run(@ScriptDir & "\croc.exe -v",@ScriptDir,@SW_HIDE,$STDOUT_CHILD)
+	$l = 50
+	While $l > 0
+	   $StreamOut = StdoutRead($crocStream)
+	   If StringInStr($StreamOut, "version") Then
+		  $versionCroc = StringReplace( $StreamOut, "croc version v", "")
+		  ExitLoop
+	   EndIf
+	   $l = $l - 1
+	   Sleep(100)
+	WEnd
+	$versionCroc = StringReplace($versionCroc, @crlf, "")
+	$versionCroc = StringReplace($versionCroc, @cr, "")
+	$versionCroc = StringReplace($versionCroc, @lf, "")
+	if $versionCroc = $versionTested Then
+		GuiCtrlSetData($guiVersionInfo, "Croc Version: v" & $versionCroc & " (Version is tested and should work without problems)" )
+	Else
+		GuiCtrlSetData($guiVersionInfo, "Croc Version: v" & $versionCroc & " (Version is untested. Up or Downgrade Croc to v" & $versionTested & ")" )
+		GUICtrlSetColor($guiVersionInfo, $COLOR_RED)
+	EndIf
+EndFunc
 
 ;Quit the Programm
 Func quit()
