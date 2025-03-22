@@ -10,7 +10,7 @@ GUICtrlCreateGroup("Croc Code and URL",10,10,583,105,-1,-1)
 $code_croccode = GUICtrlCreateInput("",20,37,381,20,BitOr($ES_CENTER,$ES_READONLY),$WS_EX_CLIENTEDGE)
 $code_crocurl = GUICtrlCreateInput("",20,70,381,20,BitOr($ES_CENTER,$ES_READONLY),$WS_EX_CLIENTEDGE)
 $copy_code = GUICtrlCreateButton("Copy to Clipboard and Exit",408,37,177,20,-1,-1)
-$copy_url = GUICtrlCreateButton("Copy to Clipboard and Exit",408,76,177,20,-1,-1)
+$copy_url = GUICtrlCreateButton("Copy to Clipboard and Exit",408,70,177,20,-1,-1)
 
 
 
@@ -54,7 +54,7 @@ gui_event_resized=
 gui_event_dropped=
 defaultfont=MS Sans Serif
 defaultfontsize=8
-[0x007A22FA]
+[0x000B272A]
 type=group
 handle=445
 locked=0
@@ -83,7 +83,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00152E6A]
+[0x0004272C]
 type=input
 handle=446
 locked=0
@@ -112,7 +112,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00162E1E]
+[0x0004272E]
 type=input
 handle=447
 locked=0
@@ -141,7 +141,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x006024E8]
+[0x00042730]
 type=button
 handle=448
 locked=0
@@ -170,13 +170,13 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x000F2E72]
+[0x00042732]
 type=button
 handle=449
 locked=0
 resize=
 x=408
-y=76
+y=70
 width=177
 height=20
 func=
