@@ -5,7 +5,7 @@
 #AutoIt3Wrapper_UseX64=y
 #AutoIt3Wrapper_Res_Comment=GUI written in AutoIt for easier usage of Croc from Schollz. Allows easier sharing between friends by using URI Registration and creating Links, that are usabel in Discord via a redirecting Webpage.
 #AutoIt3Wrapper_Res_Description=Simple GUI for easier Croc Usage
-#AutoIt3Wrapper_Res_Fileversion=0.9.0.1
+#AutoIt3Wrapper_Res_Fileversion=0.9.0.3
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=p
 #AutoIt3Wrapper_Res_ProductVersion=2
 #AutoIt3Wrapper_Res_CompanyName=noorg
@@ -30,7 +30,7 @@ If not @Compiled then DllCall("User32.dll", "bool", "SetProcessDPIAware")
 #include <WinAPIEx.au3>
 #include <WindowsConstants.au3>
 #include <File.au3>
-
+#include <mnemonic.au3>
 
 ;When already one Process of CrocReceiverGui.exe is running the file will be saveed in a temp directory which will be processed during
 ;runtime. In the temp files the information about the target files are saved. Sadly there is one file for every file which will be send.
@@ -199,25 +199,22 @@ Func Send_Files()
 			$file_string = $file_string & ' "' & _GUICtrlListView_GetItemText($gui_files, $f) & '"'
 		Next
 		;Prepare string by removing Linebreaks and add croc parameters 
-		;debug will be used to create output file and get the SharedSecret from the file
+		;For better checking a Code-Phrase will be generated and used in the Croc Parameters
+		;mnemonic words are the same as croc has. 4numbers+3words will be generated
+		$secret =  GenPassPhrase()
 		$file_string = StringReplace($file_string, @CRLF, '')
-		$file_string = "send" & $file_string
-		$clipTempOld = ClipGet()
-		ClipPut("")
+		$file_string = "send --code " & $secret & $file_string
 		GuiSetState(@SW_HIDE, $crocGui)
 		ShellExecute(@ScriptDir & "\croc.exe", $file_string, @ScriptDir )
-		;Wait for Clipboard Input -> Password is set to clipboard from Croc autoamtically
-		;Multiple Checks to make sure that the Clipboard Change is not done accidentally by a user copy pasting
-		;Checking old Clipboard and compare to new Clipboard
-		;Checking first 4 Characters if Numerical
-		;Checkign if the fifth charcter is "-"
+		;Wait for Clipboard Input -> Code-Phrase is set to clipboard from Croc autoamtically
+		;Will be checked against $secret by crocReceive. If they match croc is done with the preparation of the files
 		While 1
 			sleep(500)
 			$ClipTest =  ClipGet()
 			;When Clipboard is changed and Checks are correct open Gui for Selection (Copy only Code or with URL)
-			if $ClipTest <>  $clipTempOld And  StringInStr($ClipTest, "-") = 5 And StringIsDigit ( StringMid($clipTest, 1, 4) ) = 1 Then 
-				$code_code = ClipGet()
-				$code_url = "https://shvnrg.github.io/crocdirect.html?" & ClipGet()
+			if $ClipTest =  $secret Then
+				$code_code = $secret
+				$code_url = "https://shvnrg.github.io/crocdirect.html?" & $secret
 				GUISetState(@SW_SHOW, $crocLink)
 				WinActivate( "crocLink")
 				GuiCtrlSetData($code_croccode, $code_code)
