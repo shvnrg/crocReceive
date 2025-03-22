@@ -1,5 +1,5 @@
 # crocReceive 
-**Minmal GUI for croc file transfers and Windows.**
+**Minmal GUI for croc file transfers in Windows.**
 
 *Please remember: This is just a simple AutoIt Script Wrapper to make life easier. It probably has some (?) bugs at the moment.*  
 
