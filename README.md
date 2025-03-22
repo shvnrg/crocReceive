@@ -1,13 +1,29 @@
 # crocReceive 
-Minmal GUI for croc file transfer. I searched an easier way for large File Sharing in Discord. 
-After not finding anything CrocReceiverGui is the result.
-Please remember. This is just a simple AutoIt Script to make life easier. It probably has some (?) bugs at the moment.
-Code Optimizing is still pending. Testing is partitially done and i am already using it without problems. 
-Feel free to use or do whatever you want with it, or use a better programming language for the idea.
-But dont forget to drop me an info if you have a better solution than AutoIt ;)
-There are better solutions than AutoIt, but it is working ¯\_(ツ)_/¯ Used ISN AutoIT Studio
+**Minmal GUI for croc file transfers and Windows.**
 
-![image](https://github.com/shvnrg/crocReceive/assets/93375929/2e898e05-453c-4328-b8a7-bbd7b7d7a053)
+*Please remember: This is just a simple AutoIt Script Wrapper to make life easier. It probably has some (?) bugs at the moment.*  
+
+> [!NOTE]
+> The Gui only helps with selecting files or choosing Save to Folders.
+> The main process of transfering or receiving files is still done in a command window running croc
+
+Code Optimizing is still pending. Testing is mostly done and i am already using it without problems.  
+Feel free to use or do whatever you want with it, or use a better programming language for the idea.  
+There are better solutions than AutoIt, but it is working ¯\_(ツ)_/¯ Used ISN AutoIT Studio  
+
+**Features**  
+> - Send Files via Context Menu in Windows, Drag and Drop or Dialog  
+> - Receive Files and specify Save To Folder  
+> - URL Handler to handle croc:// Links (Easier send and receive)  
+
+**Screenshots** 
+
+![grafik](https://github.com/user-attachments/assets/91819d09-a09e-46b4-a688-a9612a0cc6dd)
+
+![grafik](https://github.com/user-attachments/assets/8989b32e-e311-4802-863e-232f75d913c7)
+
+
+
 
 > [!IMPORTANT]
 > **Minimum Version of Croc is v10.2.1! Some of the new Features are needed to get crocReceive running!
