@@ -5,7 +5,7 @@
 #AutoIt3Wrapper_UseX64=y
 #AutoIt3Wrapper_Res_Comment=GUI written in AutoIt for easier usage of Croc from Schollz. Allows easier sharing between friends by using URI Registration and creating Links, that are usabel in Discord via a redirecting Webpage.
 #AutoIt3Wrapper_Res_Description=Simple GUI for easier Croc Usage
-#AutoIt3Wrapper_Res_Fileversion=0.8.5.52
+#AutoIt3Wrapper_Res_Fileversion=0.9.0.1
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=p
 #AutoIt3Wrapper_Res_ProductVersion=2
 #AutoIt3Wrapper_Res_CompanyName=noorg
@@ -189,8 +189,6 @@ EndFunc   ;==>RegInstall
 
 ;Send Files Button
 Func Send_Files()
-	;Delete old Output
-	FileDelete("output.tmp.del")
 	;Check Listview for entries and Build a String with all files
 	Local $file_string
 	$listview_count = _GUICtrlListView_GetItemCount($gui_files)
