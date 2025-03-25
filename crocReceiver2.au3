@@ -5,7 +5,7 @@
 #AutoIt3Wrapper_UseX64=y
 #AutoIt3Wrapper_Res_Comment=GUI written in AutoIt for easier usage of Croc from Schollz. Allows easier sharing between friends by using URI Registration and creating Links, that are usabel in Discord via a redirecting Webpage.
 #AutoIt3Wrapper_Res_Description=Simple GUI for easier Croc Usage
-#AutoIt3Wrapper_Res_Fileversion=0.9.0.7
+#AutoIt3Wrapper_Res_Fileversion=0.9.0.8
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=p
 #AutoIt3Wrapper_Res_ProductVersion=2
 #AutoIt3Wrapper_Res_CompanyName=noorg
@@ -91,7 +91,7 @@ if $CmdLine[0] <> "0" Then
 	EndIf
 EndIf
 
-$versionTested = "10.2.1"
+$versionTested = "10.2.2"
 VersionCheck() 
 
 ;Check Registry if registered and set text accordingly
@@ -298,10 +298,10 @@ Func VersionCheck()
 	$versionCroc = StringReplace($versionCroc, @cr, "")
 	$versionCroc = StringReplace($versionCroc, @lf, "")
 	if $versionCroc = $versionTested Then
-		GuiCtrlSetData($guiVersionInfo, "Croc Version: v" & $versionCroc & " (Version is tested and should work without problems)" )
+		GuiCtrlSetData($guiVersionInfo, "Croc Version: v" & $versionCroc & " (tested)" )
 	Else
-		GuiCtrlSetData($guiVersionInfo, "Croc Version: v" & $versionCroc & " (Version is untested. Up or Downgrade Croc to v" & $versionTested & ")" )
-		GUICtrlSetColor($guiVersionInfo, $COLOR_RED)
+		GuiCtrlSetData($guiVersionInfo, "Croc Version: v" & $versionCroc & " (untested. latest tested Version: v" & $versionTested & ")" )
+
 	EndIf
 EndFunc
 
