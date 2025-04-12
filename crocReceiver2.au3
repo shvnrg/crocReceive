@@ -5,7 +5,7 @@
 #AutoIt3Wrapper_UseX64=y
 #AutoIt3Wrapper_Res_Comment=GUI written in AutoIt for easier usage of Croc from Schollz. Allows easier sharing between friends by using URI Registration and creating Links, that are usabel in Discord via a redirecting Webpage.
 #AutoIt3Wrapper_Res_Description=Simple GUI for easier Croc Usage
-#AutoIt3Wrapper_Res_Fileversion=0.9.0.8
+#AutoIt3Wrapper_Res_Fileversion=0.9.0.9
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=p
 #AutoIt3Wrapper_Res_ProductVersion=2
 #AutoIt3Wrapper_Res_CompanyName=noorg
@@ -230,7 +230,7 @@ Func Send_Files()
 						Case $GUI_EVENT_CLOSE
 							Exit
 						Case $copy_code
-							ClipPut($code_croccode)
+							ClipPut($code_code)
 							Exit 
 						Case $copy_url
 							ClipPut($code_url)

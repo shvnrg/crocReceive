@@ -54,7 +54,7 @@ gui_event_resized=
 gui_event_dropped=
 defaultfont=MS Sans Serif
 defaultfontsize=8
-[0x000B272A]
+[0x00012A98]
 type=group
 handle=445
 locked=0
@@ -83,7 +83,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x0004272C]
+[0x00012A9A]
 type=input
 handle=446
 locked=0
@@ -112,7 +112,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x0004272E]
+[0x00012A9C]
 type=input
 handle=447
 locked=0
@@ -141,7 +141,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00042730]
+[0x00012A9E]
 type=button
 handle=448
 locked=0
@@ -170,7 +170,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00042732]
+[0x00012AA0]
 type=button
 handle=449
 locked=0

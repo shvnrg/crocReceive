@@ -77,7 +77,7 @@ gui_event_resized=
 gui_event_dropped=
 defaultfont=MS Sans Serif
 defaultfontsize=8
-[0x000A2860]
+[0x0008249C]
 type=input
 handle=445
 locked=0
@@ -106,7 +106,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x0003285E]
+[0x000126A0]
 type=label
 handle=446
 locked=0
@@ -135,7 +135,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x0004285C]
+[0x000126A2]
 type=input
 handle=447
 locked=0
@@ -164,7 +164,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x0005285A]
+[0x000126A4]
 type=label
 handle=448
 locked=0
@@ -193,7 +193,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00042858]
+[0x000126A6]
 type=button
 handle=449
 locked=0
@@ -222,7 +222,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00042856]
+[0x000126A8]
 type=button
 handle=450
 locked=0
@@ -251,7 +251,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00052854]
+[0x000126AA]
 type=button
 handle=451
 locked=0
@@ -280,7 +280,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00042852]
+[0x000126AC]
 type=group
 handle=452
 locked=0
@@ -309,7 +309,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x00032850]
+[0x000126AE]
 type=group
 handle=453
 locked=0
@@ -338,7 +338,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x0003288C]
+[0x000126B0]
 type=button
 handle=454
 locked=0
@@ -367,7 +367,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x0003288E]
+[0x000126B2]
 type=group
 handle=455
 locked=0
@@ -396,7 +396,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x000A2890]
+[0x000126B4]
 type=label
 handle=456
 locked=0
@@ -425,7 +425,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x000528B2]
+[0x000126B6]
 type=listview
 handle=457
 locked=0
@@ -454,7 +454,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x000428A8]
+[0x000226BC]
 type=label
 handle=458
 locked=0
@@ -483,7 +483,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x000328AA]
+[0x000126BE]
 type=button
 handle=459
 locked=0
@@ -512,7 +512,7 @@ tabpage=-1
 iconindex=
 iconlarge=0
 textmode=text
-[0x000D28AE]
+[0x000126C0]
 type=label
 handle=460
 locked=0
